@@ -8,6 +8,11 @@ app.get('/', (req, res) => {
     return res.status(200).send('Welcome to MERN stack tutorial');
 })
 
-app.listen(PORT, () => {
-    console.log(`App is listening on port ${PORT}`);
-})
+mongoose.connect(MONGODB_URL)
+    .then(() => {
+        console.log('App connected to database');
+        app.listen(PORT, () => {
+            console.log(`App is listening on port ${PORT}`);
+        })
+    })
+    .catch(error => console.log(error));
