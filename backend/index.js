@@ -8,19 +8,19 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use('/books', booksRoute);
 // Middleware for handling CORS policy
 // Option 1: allow all origins with default cors(*)
-// app.use(cors());
+app.use(cors());
 // Option 2: allow custom origins
-app.use(
-    cors({
-        origin: 'http://localhost:3000',
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type'],
-    })
-)
-
+// app.use(
+//     cors({
+//         origin: 'http://localhost:3000',
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders: ['Content-Type'],
+//     })
+// )
+app.use('/books', booksRoute);
+        
 // display the 'Welcome ...' message when the user visits the
 // localhost:5555/ page
 app.get('/', (req, res) => {
