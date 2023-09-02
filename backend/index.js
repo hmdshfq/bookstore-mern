@@ -57,6 +57,19 @@ app.get('/books', async (req, res) => {
         res.status(500).send({ message: error.message });
     }
 })
+
+// Get a single book
+app.get('/books/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const book = await Book.findById(id);
+        return res.status(200).json(book);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send({ message: error.message });
+    }
+})
+
 // Connect to mongodb database
 mongoose.connect(MONGODB_URL)
     .then(() => {
