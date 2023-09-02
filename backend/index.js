@@ -5,6 +5,9 @@ import { Book } from './models/bookModel.js';
 
 const app = express();
 
+// Middleware
+app.use(express.json());
+
 // display the 'Welcome ...' message when the user visits the
 // localhost:5555/ page
 app.get('/', (req, res) => {
@@ -19,6 +22,14 @@ app.post('/books', async (req, res) => {
                 message: 'Send all required fields: title, author, publishYear'
             })
         }
+        const newBook = {
+            title: req.body.title,
+            author: req.body.author,
+            publishYear: req.body.publishYear
+        }
+        const book = await Book.create(newBook);
+
+        return res.status(200).send(book);
     } catch (error) {
         console.log(error.message);
         res.status(500).send({ message: error.message });
