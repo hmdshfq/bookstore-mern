@@ -15,6 +15,13 @@ app.get('/', (req, res) => {
 })
 
 // Route to save a new book
+// use Postman to send a request to http://localhost:5555 with body in raw json form
+// For example, we can send the following object in the body
+// {
+//      "title": "Harry Potter and the Philosopher's Stone",
+//      "author": "J.K. Rowling",
+//      "publishYear": "1997"
+// }
 app.post('/books', async (req, res) => {
     try {
         if (!req.body.title || !req.body.author || !req.body.publishYear) {
